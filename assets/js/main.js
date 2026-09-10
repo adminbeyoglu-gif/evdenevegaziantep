@@ -9,6 +9,7 @@ document.addEventListener('click',function(e){
  if(typeof gtag!=='function')return;
  if(h.indexOf('tel:')===0)gtag('event','telefon_tikla',{yontem:'telefon'});
  if(h.indexOf('wa.me')>-1)gtag('event','whatsapp_tikla',{yontem:'whatsapp'});
+ if(h.indexOf('g.page/r/')>-1)gtag('event','google_yorum_tikla',{yontem:'yorum_bandi'});
 });
 var f=document.getElementById('teklif');
 if(f){f.addEventListener('submit',function(e){
