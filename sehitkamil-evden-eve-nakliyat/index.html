@@ -48,11 +48,6 @@ li{margin-bottom:.45em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:-999px;top:0;background:#ff6b00;color:#fff;padding:10px 16px;z-index:999}
 .skip:focus{left:8px;top:8px}
-/* TOP BAR */
-.topbar{background:#071a33;color:#c9d8ec;font-size:.82rem}
-.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:38px;flex-wrap:wrap}
-.topbar a{color:#fff}
-.topbar span{display:inline-flex;align-items:center;gap:6px}
 /* HEADER */
 header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e6ebf2;box-shadow:0 1px 14px rgba(10,37,64,.06)}
 .hd{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:74px}
@@ -211,7 +206,6 @@ background:#1fa855;display:grid;place-items:center;box-shadow:0 8px 24px rgba(31
  .g2,.g3,.g4{grid-template-columns:1fr}
  .fgrid{grid-template-columns:1fr}
  .f-row{grid-template-columns:1fr}
- .topbar .wrap{justify-content:center;font-size:.76rem}
  .hero-badges{gap:16px}
  .btn{width:100%}
  .hero-cta .btn{width:100%}
@@ -222,7 +216,7 @@ outline:3px solid #ff7a18;outline-offset:2px;border-radius:4px}
  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
  .btn:hover,.card:hover{transform:none}
 }
-@media print{.mbar,.wafloat,header,.topbar{display:none}body{padding-bottom:0}}
+@media print{.mbar,.wafloat,header{display:none}body{padding-bottom:0}}
 
 .esya-grup{background:#fff;border:1px solid #e4ebf4;border-radius:14px;padding:20px 22px;margin-bottom:16px}
 .esya-grup h3{margin:0 0 14px;padding-bottom:11px;border-bottom:2px solid #f1f5fb;color:#0b3a75}
@@ -503,10 +497,6 @@ text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
 </head>
 <body>
 <a class="skip" href="#main">İçeriğe geç</a>
-<div class="topbar"><div class="wrap">
-<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fb3dd" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> Karagöz Mah. İstasyon Cad. Veliç İş Hanı Kat:6 Daire:609, Şahinbey / Gaziantep</span>
-<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fb3dd" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Pazartesi - Pazar 08:00 - 20:00 &nbsp;|&nbsp; <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fb3dd" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg> K1 Yetki Belgeli &amp; Sigortalı</span>
-</div></div>
 <header><div class="wrap hd">
 <a class="logo" href="../"><span class="mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h11v10H2z"/><path d="M13 10h4l4 4v3h-8z"/><circle cx="6.5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg></span>
 <span>Beyoğlu Evden Eve Nakliyat<small>Gaziantep Evden Eve Nakliyat</small></span></a>
