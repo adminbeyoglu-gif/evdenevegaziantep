@@ -1,0 +1,37 @@
+# Beyoğlu Evden Eve Nakliyat - evdenevegaziantep.com
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Arama motorlari icin tarama hizi (sunucu yorulmasin)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Yapay zeka botlari - icerik egitiminde kullanilmasin istemiyorsaniz
+# asagidaki Allow satirlarini Disallow yapin
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# SEO analiz botlari - sunucu yukunu azaltmak icin engellendi
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://www.evdenevegaziantep.com/sitemap.xml

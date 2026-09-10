@@ -1,0 +1,18 @@
+# Cloudflare Pages / Netlify yonlendirmeleri
+# Eski URL yapisindan yeni yapiya kalici (301) yonlendirme
+/sahinbey  /sahinbey-evden-eve-nakliyat/  301
+/sehitkamil  /sehitkamil-evden-eve-nakliyat/  301
+/nizip  /nizip-evden-eve-nakliyat/  301
+/islahiye  /islahiye-evden-eve-nakliyat/  301
+/nurdagi  /nurdagi-evden-eve-nakliyat/  301
+/oguzeli  /oguzeli-evden-eve-nakliyat/  301
+/araban  /araban-evden-eve-nakliyat/  301
+/yavuzeli  /yavuzeli-evden-eve-nakliyat/  301
+/karkamis  /karkamis-evden-eve-nakliyat/  301
+/karatas  /karatas-nakliyat/  301
+/ibrahimli  /ibrahimli-nakliyat/  301
+/hizmet-bolgeleri  /hizmet-bolgelerimiz/  301
+/teklif-al  /fiyat-teklifi/  301
+
+# Bulunamayan sayfalar gercek 404 dondursun (soft 404 onleme)
+/*  /404.html  404
