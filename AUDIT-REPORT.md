@@ -257,3 +257,48 @@ The `<title>` is more keyword-optimized than the H1. Consider adding "Asansörl�
 | **Accessibility** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ |
 
 \* CSP kâğıt üzerinde tamdı ancak `script-src 'unsafe-inline'` içeriyordu; artık gerçekten sıkı.
+
+---
+
+# 🚀 ÜÇÜNCÜ TUR — LCP / CORE WEB VITALS (2026-09-10, PageSpeed raporu sonrası)
+
+PageSpeed Insights raporundaki "LCP 4,3 sn", "Resim yayınlamayı kolaylaştırın (~127 KiB)",
+"istekler ilk oluşturmayı engelliyor (style.css)" ve "kullanılmayan JavaScript (gtag 186 KiB)"
+uyarıları giderildi. Headless Chromium ile mobil (390x844, DPR2) ve masaüstü doğrulandı.
+
+## Duyarlı (responsive) görsel zinciri
+- 45 görsel için **480w ve 768w varyantları** üretildi (AVIF q50 + WebP q80); `srcset`/`sizes` eklendi:
+  - `hero-img` → `(max-width:980px) 92vw, 515px`
+  - içerik görseli (`.layout`) → `(max-width:980px) 92vw, 736px`
+  - galeri (`.gal`) → `(max-width:620px) 92vw, (max-width:980px) 46vw, 375px`
+- Mobil LCP görseli örnek kazanç: hero 180 KB JPG / 101 KB WebP → **22 KB (480w AVIF)** / 41 KB (768w AVIF).
+- Preload'lar `imagesrcset`/`imagesizes` ile duyarlı yapıldı; preload ile gerçek istek birebir eşleşiyor (çift indirme yok, headless testle doğrulandı).
+
+## Render-blocking CSS kaldırıldı
+- İlk ekranı boyayan kurallar `assets/css/critical.css` olarak derlenip **tüm sayfaların `<head>` içine satır içi** gömüldü (~3 KB gzip).
+- Tam stylesheet artık `<link rel="preload" as="style" data-css>` ile indirmeyi engellemeden yükleniyor; `main.js` parse sonrası stylesheet'e çeviriyor. JS kapalıyken `<noscript>` içindeki klasik link devreye giriyor.
+- Sonuç: style.css artık kritik yolda değil; ilk boyama stylesheet yanıtını beklemiyor.
+
+## Google Analytics ertelendi
+- gtag.js yüklemesi HTML'den kaldırıldı; `assets/js/analytics.js` artık **`requestIdleCallback` (2,5 sn timeout), ilk etkileşim ve 5 sn güvenlik geri sayımı** ile yüklüyor. Kuyruklama (dataLayer/gtag shim) korundu; erken tıklamalar kaybolmuyor.
+- Etki: ilk yükten 186 KB JavaScript/parse işi kalktı; olay takibi çalışmaya devam ediyor.
+
+## Yönlendirmeler
+- `vercel.json`'a host koşullu apex → www **308** kuralı eklendi (paneldeki kural 307 döndürüyordu). Cloudflare'de tek adımla çözmek için bkz. aşağıdaki not.
+
+## Headless doğrulama (yerel, 390x844 DPR2)
+| Sayfa | FCP | LCP | LCP öğesi |
+|-------|-----|-----|-----------|
+| Ana sayfa (mobil) | ~105 ms | ~105 ms | hero metni (kritik CSS) |
+| Ana sayfa (masaüstü 1366) | ~148 ms | ~148 ms | H1 |
+| İlçe sayfası (mobil) | ~136 ms | ~156 ms | içerik görseli (doğru AVIF varyantı) |
+| Blog (mobil) | ~64 ms | ~80 ms | kapak görseli 768w AVIF |
+| JS kapalı | — | — | tam CSS `<noscript>` ile uygulanıyor |
+
+Konsol hatası (CSP dahil) yok; 2.789 istekle tüm kaynaklar 200.
+
+## Cloudflare panel notları (repodan yönetilemez)
+Canlı trafik Cloudflare üzerinden Vercel'e geçiyor (`server: cloudflare` + `x-vercel-cache`). Raporlardaki iki maliyet Cloudflare kaynaklı:
+1. `cloudflare-static/email-decode.min.js` — **Scrape Shield → Email Address Obfuscation** kapalıysa kaybolur (sitede e-posta KVKK/iletişimde geçiyor; kapatılırsa örümcekler adresi toplar, tercih sizin).
+2. `api.uk.exponea.com/bulk` (980 ms) — kod tabanında yok; büyük olasılıkla **Cloudflare Zaraz / bir Worker / kurulu uygulama** enjekte ediyor. Kullanılmıyorsa kaldırılması ilk yükü rahatlatır; kontrol: CF paneli → Zaraz, Workers & Pages, Apps.
+3. Çift yönlendirmeyi tek adıma indirmek için CF → **Rules → Redirect Rules**: `(http) veya host = evdenevegaziantep.com → https://www.evdenevegaziantep.com` 308; ardından Vercel panelindeki yönlendirmeyi bırakın (yedek).

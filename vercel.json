@@ -1,6 +1,28 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "evdenevegaziantep.com"
+        }
+      ],
+      "destination": "https://www.evdenevegaziantep.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "evdenevegaziantep.com"
+        }
+      ],
+      "destination": "https://www.evdenevegaziantep.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/sahinbey",
       "destination": "/sahinbey-evden-eve-nakliyat/",
       "permanent": true

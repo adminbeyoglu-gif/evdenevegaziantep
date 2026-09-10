@@ -30,7 +30,118 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192-v5.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon-v5.png">
 
-<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+/* KRITIK CSS (ilk ekran) - tum sayfalara satir icinde enjekte edilir.
+   Tum stiller style.css'ten yuklenir; bu dosya yalnizca ilk boyamayi kapsar. */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+color:#1b2430;background:#fff;line-height:1.7;font-size:16.5px;padding-bottom:74px}
+img{max-width:100%;height:auto;display:block}
+a{color:#0b3a75;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .6em;color:#0a2540;font-weight:800;letter-spacing:-.02em}
+h1{font-size:clamp(1.75rem,4.4vw,2.9rem)}
+h2{font-size:clamp(1.35rem,3vw,2.05rem);margin-top:0}
+h3{font-size:1.15rem}
+p{margin:0 0 1.1em}
+ul{margin:0 0 1.1em;padding-left:1.15em}
+li{margin-bottom:.45em}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:0;background:#ff6b00;color:#fff;padding:10px 16px;z-index:999}
+.skip:focus{left:8px;top:8px}
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e6ebf2;box-shadow:0 1px 14px rgba(10,37,64,.06)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:74px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.16rem;color:#0a2540;letter-spacing:-.03em}
+.logo:hover{text-decoration:none}
+.logo .mark{width:56px;height:56px;border-radius:50%;background:transparent;padding:0;
+display:grid;place-items:center;flex:none;box-shadow:0 4px 12px rgba(11,58,117,.28)}
+.logo .mark img{width:100%;height:100%;border-radius:50%;object-fit:contain;display:block}
+.logo small{display:block;font-size:.66rem;font-weight:600;color:#6b7c93;letter-spacing:.04em;text-transform:uppercase}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0;align-items:center}
+nav a{display:block;padding:9px 12px;border-radius:8px;color:#243b53;font-weight:600;font-size:.93rem}
+nav a:hover{background:#f1f5fb;text-decoration:none;color:#0b3a75}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:10px;
+font-weight:800;font-size:.97rem;border:0;cursor:pointer;transition:.22s cubic-bezier(.4,0,.2,1);text-align:center;line-height:1.3}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-p:hover{box-shadow:0 12px 30px rgba(240,80,10,.48)}
+.btn-w:hover{box-shadow:0 12px 30px rgba(18,140,74,.45)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn-p{background:linear-gradient(135deg,#ff8f3c,#f0500a);color:#fff;box-shadow:0 6px 18px rgba(240,80,10,.34)}
+.btn-w{background:linear-gradient(135deg,#25c463,#128c4a);color:#fff;box-shadow:0 6px 18px rgba(18,140,74,.32)}
+.btn-o{background:#fff;color:#0b3a75;border:2px solid #cfdcee}
+.btn-l{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.5)}
+.menu-btn{display:none;background:#f1f5fb;border:0;border-radius:9px;padding:10px 12px;font-size:1.3rem;cursor:pointer;color:#0a2540}
+/* HERO */
+.hero{position:relative;background:linear-gradient(135deg,#071a33 0%,#0b3a75 55%,#12508f 100%);color:#fff;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(1000px 460px at 84% 12%,rgba(255,122,24,.22),transparent 62%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center;padding-top:60px;padding-bottom:60px}
+.hero h1{color:#fff;margin-bottom:.45em}
+.hero .lead{font-size:1.1rem;color:#d6e4f7;margin-bottom:1.5em;max-width:36em}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);
+padding:7px 15px;border-radius:99px;font-size:.83rem;font-weight:700;margin-bottom:20px;color:#fff}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.hero-badges{display:flex;gap:22px;flex-wrap:wrap;font-size:.86rem;color:#cfe0f5}
+.hero-badges b{display:block;font-size:1.5rem;color:#fff;line-height:1.1}
+.hero-badges span{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
+.hero-badges .lbl{display:inline-flex;align-items:center;gap:6px}
+.hero-img{border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);border:5px solid rgba(255,255,255,.14);max-height:520px}
+/* FORM CARD (hero icinde) */
+.formcard{background:#fff;color:#1b2430;border-radius:16px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.32)}
+.formcard h2{font-size:1.22rem;margin-bottom:.2em}
+.formcard p.sm{font-size:.85rem;color:#6b7c93;margin-bottom:1em}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select,textarea{width:100%;padding:12px 13px;border:1.6px solid #d8e1ec;border-radius:9px;font-size:.95rem;
+font-family:inherit;margin-bottom:10px;background:#fbfcfe;color:#1b2430}
+input:focus,select:focus,textarea:focus{outline:0;border-color:#1668c4;background:#fff;box-shadow:0 0 0 3px rgba(22,104,196,.13)}
+label{display:block;font-size:.82rem;font-weight:700;color:#3d5273;margin-bottom:4px}
+.kvkk{font-size:.74rem;color:#7b8ba3;margin:8px 0 0}
+/* IC SAYFA BASLIKLARI / EKSEMEN */
+.crumb{background:#f5f8fc;border-bottom:1px solid #e6ebf2;font-size:.83rem;padding:11px 0;color:#6b7c93}
+.crumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0}
+.crumb li::after{content:"›";margin-left:7px;color:#b6c4d6}
+.crumb li:last-child::after{content:""}
+.crumb li:last-child{color:#0a2540;font-weight:600}
+.phead{background:linear-gradient(135deg,#071a33,#0b3a75);color:#fff;padding:52px 0}
+.phead h1{color:#fff;margin-bottom:.35em}
+.phead p{color:#cfe0f5;max-width:62ch;font-size:1.04rem;margin:0}
+section{padding:66px 0}
+.alt{background:#f5f8fc}
+.eyebrow{color:#f25c05;font-weight:800;font-size:.83rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+/* MOBIL ALT BAR */
+.mbar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:#fff;
+box-shadow:0 -3px 18px rgba(0,0,0,.16);border-top:1px solid #e6ebf2}
+.mbar a{flex:1;padding:13px 4px;text-align:center;font-size:.76rem;font-weight:800;color:#0a2540;line-height:1.25;
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.mbar a.call{background:linear-gradient(135deg,#f0453f,#c81e2e);color:#fff}
+.mbar a.wa{background:linear-gradient(135deg,#25c463,#128c4a);color:#fff}
+.mbar a:last-child{background:linear-gradient(135deg,#ffd84d,#f5a800);color:#0a2540}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+outline:3px solid #ff7a18;outline-offset:2px;border-radius:4px}
+@media(max-width:980px){
+ .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:42px}
+ .hd .btn-p{display:none}
+ nav{display:none}
+ nav.open{display:block;position:absolute;top:100%;left:0;right:0;background:#fff;padding:12px 20px 18px;
+ box-shadow:0 12px 26px rgba(10,37,64,.16);border-bottom:1px solid #e6ebf2}
+ nav.open ul{flex-direction:column;align-items:stretch;gap:0}
+ nav.open a{padding:12px 8px;border-bottom:1px solid #eef2f8}
+ .menu-btn{display:block}
+ .mbar{display:flex}
+}
+@media(max-width:620px){
+ body{font-size:16px}
+ section{padding:46px 0}
+ .f-row{grid-template-columns:1fr}
+ .btn{width:100%}
+ .hero-cta .btn{width:100%}
+ .hero-badges{gap:16px}
+}
+</style>
+<link rel="preload" as="style" href="../assets/css/style.css" data-css>
+<noscript><link rel="stylesheet" href="../assets/css/style.css"></noscript>
 <script type="application/ld+json">{
  "@context": "https://schema.org",
  "@type": "MovingCompany",
@@ -274,11 +385,10 @@
 <link rel="dns-prefetch" href="https://wa.me">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
-<link rel="preload" as="image" href="../assets/img/real/galeri/paketleme-kamyon-ici.avif" type="image/avif">
+<link rel="preload" as="image" imagesrcset="../assets/img/real/galeri/paketleme-kamyon-ici-480w.avif 480w, ../assets/img/real/galeri/paketleme-kamyon-ici-768w.avif 768w, ../assets/img/real/galeri/paketleme-kamyon-ici.avif 1080w" imagesizes="(max-width:980px) 92vw, 736px">
 <link rel="manifest" href="../manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32-v5.png">
-<!-- Google tag (gtag.js) - GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZG8TX9J7WS"></script>
+<!-- Google Analytics (gtag.js) ilk etkilesimde/bosta analytics.js tarafindan yuklenir -->
 <script src="../assets/js/analytics.js" defer></script>
 </head>
 <body>
@@ -311,7 +421,7 @@
 
 <section><div class="wrap"><div class="layout">
 <div class="content">
-<picture><source srcset="../assets/img/real/galeri/paketleme-kamyon-ici.avif" type="image/avif"><source srcset="../assets/img/real/galeri/paketleme-kamyon-ici.webp" type="image/webp"><img fetchpriority="high" width="1080" height="1440" src="../assets/img/real/galeri/paketleme-kamyon-ici.jpg" decoding="async"
+<picture><source type="image/avif" srcset="../assets/img/real/galeri/paketleme-kamyon-ici-480w.avif 480w, ../assets/img/real/galeri/paketleme-kamyon-ici-768w.avif 768w, ../assets/img/real/galeri/paketleme-kamyon-ici.avif 1080w" sizes="(max-width:980px) 92vw, 736px"><source type="image/webp" srcset="../assets/img/real/galeri/paketleme-kamyon-ici-480w.webp 480w, ../assets/img/real/galeri/paketleme-kamyon-ici-768w.webp 768w, ../assets/img/real/galeri/paketleme-kamyon-ici.webp 1080w" sizes="(max-width:980px) 92vw, 736px"><img sizes="(max-width:980px) 92vw, 736px" fetchpriority="high" width="1080" height="1440" src="../assets/img/real/galeri/paketleme-kamyon-ici.jpg" decoding="async"
 alt="Nizip evden eve nakliyat: Beyoğlu Evden Eve Nakliyat ekibi Nizip'de asansörlü taşıma yaparken"
 style="border-radius:14px;margin-bottom:1.8em;box-shadow:0 10px 30px rgba(10,37,64,.14)"></picture>
 
