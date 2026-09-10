@@ -52,7 +52,7 @@ padding:7px 15px;border-radius:99px;font-size:.83rem;font-weight:700;margin-bott
 .hero-badges b{display:block;font-size:1.5rem;color:#fff;line-height:1.1}
 .hero-badges span{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
 .hero-badges .lbl{display:inline-flex;align-items:center;gap:6px}
-.hero-img{border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);border:5px solid rgba(255,255,255,.14)}
+.hero-img{border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);border:5px solid rgba(255,255,255,.14);max-height:520px}
 /* FORM CARD */
 .formcard{background:#fff;color:#1b2430;border-radius:16px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.32)}
 .formcard h2{font-size:1.22rem;margin-bottom:.2em}
