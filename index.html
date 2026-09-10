@@ -263,6 +263,19 @@ text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
  .sonuc{position:static;padding:20px}
  .sonuc-buyuk{font-size:2.6rem}
 }
+/* FOTO GALERI */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gal figure{margin:0;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 6px 22px rgba(10,37,64,.10)}
+.gal img{width:100%;height:232px;object-fit:cover;transition:transform .5s cubic-bezier(.2,.6,.2,1)}
+.gal figure:hover img{transform:scale(1.07)}
+.gal figure::after{content:"";position:absolute;inset:0;pointer-events:none;
+background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);
+transform:translateX(-120%);transition:transform .6s}
+.gal figure:hover::after{transform:translateX(120%)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;color:#fff;
+font-size:.86rem;font-weight:700;background:linear-gradient(transparent,rgba(7,26,51,.86))}
+@media(max-width:980px){.gal{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.gal{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">{
  "@context": "https://schema.org",
@@ -742,6 +755,27 @@ taşıma süresini anında görün. Sonucu tek tuşla WhatsApp'tan bize gönderi
 <div class="center"><p class="eyebrow">Sıkça Sorulan Sorular</p><h2>Merak Ettikleriniz</h2></div>
 <div style="max-width:840px;margin:0 auto"><details><summary>Gaziantep'te evden eve nakliyat fiyatları ne kadar?</summary><div class="body">Fiyat; eşya hacmi (2+1, 3+1, villa), kat ve asansör durumu, taşınacak mesafe, paketleme ihtiyacı ve tarih gibi faktörlere göre belirlenir. Gaziantep şehir içi 2+1 bir ev için ortalama bir aralık verilebilse de doğru fiyat ancak ücretsiz keşif sonrası netleşir. Keşif sonrası verdiğimiz yazılı fiyat sabittir; taşıma günü ek ücret talep edilmez.</div></details><details><summary>Asansörlü taşımacılık ek ücret mi?</summary><div class="body">Şehir içi taşımalarımızın büyük bölümünde asansör fiyata dâhildir. Çok yüksek katlı binalarda veya ikinci bir asansör aracı gerektiğinde fark oluşabilir; bu fark keşif sırasında yazılı olarak bildirilir.</div></details><details><summary>Eşyalarım sigortalı mı taşınıyor?</summary><div class="body">Evet. Taşıma süresince eşyalarınız nakliyat sigortası kapsamındadır. Talep ederseniz beyan değeri üzerinden ek sigorta da yaptırabiliriz. Sigorta poliçesi taşıma öncesinde tarafınıza iletilir.</div></details><details><summary>Paketleme malzemesi ücretli mi?</summary><div class="body">Standart paketleme malzemeleri (koli, streç film, balonlu naylon, battaniye, mobilya kılıfı) fiyata dâhildir. Ekstra hassas eşyalar için özel sandık gerekiyorsa bu ayrıca belirtilir.</div></details><details><summary>Taşıma ne kadar sürer?</summary><div class="body">Şehir içi 2+1 bir ev ortalama 4-6 saatte, 3+1 bir ev 6-8 saatte tamamlanır. Şehirler arası taşımalarda mesafeye göre yükleme aynı gün, teslim 1-2 gün içinde yapılır.</div></details><details><summary>Hafta sonu veya resmî tatilde taşıma yapıyor musunuz?</summary><div class="body">Evet. Cumartesi, pazar ve resmî tatillerde de taşıma yapıyoruz. Bu günler yoğun olduğu için en az 3-5 gün önceden randevu almanızı öneririz.</div></details>
 <p class="center" style="margin-top:22px"><a class="btn btn-o" href="sikca-sorulan-sorular/">Tüm soruları görün →</a></p></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<div class="center"><p class="eyebrow">Foto Galeri</p>
+<h2>Gaziantep'te Gerçekleştirdiğimiz Taşımalardan Kareler</h2>
+<p class="lead-c">20. kata kadar asansörlü taşıma, sıfır hasarlı paketleme ve modern araç filomuzdan görüntüler.</p></div>
+<!-- NOT: bu gorseller temsilidir; sahadaki gercek is fotograflarinizla degistirin -->
+<div class="gal">
+<figure><img src="assets/img/galeri-asansorlu-tasima.jpg" width="760" height="510" loading="lazy" decoding="async"
+alt="İbrahimli'de yüksek katlı binaya asansörlü sistemle sarılmış koltuk taşınması"><figcaption>Asansörlü Yüksek Kat Taşımacılığı (İbrahimli)</figcaption></figure>
+<figure><img src="assets/img/galeri-mobilya-paketleme.jpg" width="760" height="510" loading="lazy" decoding="async"
+alt="Patpat ve kraft kağıtla özenle sarılmış koltuk ve sandalye paketleme"><figcaption>Özel Ambalajlı Koltuk ve Mobilya Paketleme</figcaption></figure>
+<figure><img src="assets/img/galeri-kamyon-filo.jpg" width="760" height="510" loading="lazy" decoding="async"
+alt="Kapalı kasa çelik kasalı nakliyat kamyonu filosu"><figcaption>Kapalı Kasa Çelik Kamyon Filomuz</figcaption></figure>
+<figure><img src="assets/img/galeri-marangoz-montaj.jpg" width="760" height="510" loading="lazy" decoding="async"
+alt="Uzman marangozun yeni evde yatak odası dolabı montajı"><figcaption>Uzman Marangoz ile Yatak Odası Montajı</figcaption></figure>
+<figure><img src="assets/img/galeri-beyaz-esya-sarim.jpg" width="760" height="510" loading="lazy" decoding="async"
+alt="Buzdolabı ve çamaşır makinesinin streç ve köşe koruyucuyla sarımı"><figcaption>Hassas Mutfak Eşyası &amp; Beyaz Eşya Sarımı</figcaption></figure>
+<figure><img src="assets/img/galeri-ofis-tasima.jpg" width="760" height="510" loading="lazy" decoding="async"
+alt="Kurumsal ofis taşımacılığında masa ve arşiv kolilerinin taşınması"><figcaption>Ofis &amp; Kurumsal Taşımacılık Süreci</figcaption></figure>
+</div>
 </div></section>
 
 <section><div class="wrap"><div class="band">
