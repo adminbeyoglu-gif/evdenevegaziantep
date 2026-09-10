@@ -302,3 +302,24 @@ Canlı trafik Cloudflare üzerinden Vercel'e geçiyor (`server: cloudflare` + `x
 1. `cloudflare-static/email-decode.min.js` — **Scrape Shield → Email Address Obfuscation** kapalıysa kaybolur (sitede e-posta KVKK/iletişimde geçiyor; kapatılırsa örümcekler adresi toplar, tercih sizin).
 2. `api.uk.exponea.com/bulk` (980 ms) — kod tabanında yok; büyük olasılıkla **Cloudflare Zaraz / bir Worker / kurulu uygulama** enjekte ediyor. Kullanılmıyorsa kaldırılması ilk yükü rahatlatır; kontrol: CF paneli → Zaraz, Workers & Pages, Apps.
 3. Çift yönlendirmeyi tek adıma indirmek için CF → **Rules → Redirect Rules**: `(http) veya host = evdenevegaziantep.com → https://www.evdenevegaziantep.com` 308; ardından Vercel panelindeki yönlendirmeyi bırakın (yedek).
+
+## Canlı üretim doğrulaması (deploy sonrası, headless Chromium mobil 390x844 DPR2, gerçek ağ)
+| Sayfa | TTFB | FCP | LCP |
+|-------|-----:|----:|----:|
+| Ana sayfa | ~0,19 sn | ~0,29 sn | **~0,29 sn** (raporlanan eski değer: 4,3 sn) |
+| İlçe sayfası | ~0,29 sn | ~0,38 sn | ~0,66 sn (doğru AVIF varyantı) |
+| Hacim hesaplama | ~0,26 sn | ~0,36 sn | ~0,36 sn |
+
+- Mobilde en ağır kaynak 42 KB (768w hero AVIF); eski 180 KB JPG ve 186 KB gtag artık ilk yükte yok.
+- Deploy sonrası CSP canlı testte iki dış servisi engellediği görüldü ve hemen düzeltildi (commit 75458b4):
+  GA4'ün yeni `analytics.google.com / stats.g.doubleclick.net / www.google.com /g/collect` uçları `connect-src`'ye,
+  Cloudflare Web Analytics `static.cloudflareinsights.com` beacon'ı `script-src`'ye eklendi.
+  (Not: GA4'te zaman zaman görülen tekil `analytics.google.com ERR_ABORTED`, aynı beacon'ın yeniden denenmesinden
+  kaynaklanan normal tarayıcı davranışıdır; asıl çağrılar 204 dönüyor.)
+- Görsel doğrulama: mobil ve masaüstü ilk ekran eksiksiz boyanıyor, FOUC/tarz kayması yok.
+
+## Hâlâ elle yapılması gerekenler (repo dışı, Cloudflare/Vercel paneli)
+1. **Apex yönlendirmesi hâlâ 307**: Cloudflare önünde olduğu için vercel.json kuralı çalışmıyor.
+   CF → Rules → Redirect Rules ile tek 308 kuralı tanımlayın (ya da CF SSL/Always Use HTTPS + www kuralını 308 yapın).
+2. **api.uk.exponea.com/bulk** çağrısı kod tabanında yok; CF Zaraz/Worker/App enjeksiyonu — kullanılmıyorsa kaldırın.
+3. email-decode.min.js CF Scrape Shield ürünü; e-posta gizleme istenmiyorsa kapatılabilir (kalsa da 1 KB, önemsiz).
