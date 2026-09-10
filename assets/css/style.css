@@ -143,6 +143,7 @@ display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap
 .note{background:#fff8f2;border-left:4px solid #f25c05;padding:16px 20px;border-radius:0 10px 10px 0;margin:1.6em 0;font-size:.95rem}
 /* FOOTER */
 footer{background:#071a33;color:#9db4d0;font-size:.9rem;padding:58px 0 22px}
+.yorum-band{padding:0;background:#f4f8fd;border-top:1px solid #e2ebf6}
 footer h4{color:#fff;font-size:.96rem;margin-bottom:1em;letter-spacing:.02em}
 footer a{color:#9db4d0}
 footer a:hover{color:#fff}
