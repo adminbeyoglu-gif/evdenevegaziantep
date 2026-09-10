@@ -24,12 +24,12 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-# SEO analiz botlari - sunucu yukunu azaltmak icin engellendi
+# SEO analiz botlari - Ahrefs/Semrush taramasina izin verilir
 User-agent: AhrefsBot
-Disallow: /
+Allow: /
 
 User-agent: SemrushBot
-Disallow: /
+Allow: /
 
 User-agent: MJ12bot
 Disallow: /
