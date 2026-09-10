@@ -1,0 +1,63 @@
+{
+  "redirects": [
+    { "source": "/sahinbey", "destination": "/sahinbey-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/sehitkamil", "destination": "/sehitkamil-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/nizip", "destination": "/nizip-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/islahiye", "destination": "/islahiye-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/nurdagi", "destination": "/nurdagi-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/oguzeli", "destination": "/oguzeli-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/araban", "destination": "/araban-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/yavuzeli", "destination": "/yavuzeli-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/karkamis", "destination": "/karkamis-evden-eve-nakliyat/", "permanent": true },
+    { "source": "/karatas", "destination": "/karatas-nakliyat/", "permanent": true },
+    { "source": "/ibrahimli", "destination": "/ibrahimli-nakliyat/", "permanent": true },
+    { "source": "/hizmet-bolgeleri", "destination": "/hizmet-bolgelerimiz/", "permanent": true },
+    { "source": "/teklif-al", "destination": "/fiyat-teklifi/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-src https://www.google.com https://maps.google.com; upgrade-insecure-requests" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/404.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/_onizleme.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    }
+  ]
+}

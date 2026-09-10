@@ -1,3 +1,5 @@
+# NOT: Site Vercel'de barindiriliyor; basliklar artik vercel.json'dan yonetiliyor.
+# Bu dosya Netlify/Cloudflare Pages formatindadir ve Vercel tarafindan okunmaz (yedek olarak tutulur).
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN

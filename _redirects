@@ -1,4 +1,5 @@
-# Cloudflare Pages / Netlify yonlendirmeleri
+# NOT: Site Vercel'de barindiriliyor; yonlendirmeler artik vercel.json'dan yonetiliyor.
+# Bu dosya Netlify/Cloudflare Pages formatindadir ve Vercel tarafindan okunmaz (yedek olarak tutulur).
 # Eski URL yapisindan yeni yapiya kalici (301) yonlendirme
 /sahinbey  /sahinbey-evden-eve-nakliyat/  301
 /sehitkamil  /sehitkamil-evden-eve-nakliyat/  301
