@@ -13,8 +13,7 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
-# Yapay zeka botlari - icerik egitiminde kullanilmasin istemiyorsaniz
-# asagidaki Allow satirlarini Disallow yapin
+# Yapay zeka botlari (arama amacli taramaya izin, egitim kullanimi firma tercihine bagli)
 User-agent: GPTBot
 Allow: /
 
