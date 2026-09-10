@@ -2,6 +2,7 @@
 User-agent: *
 Allow: /
 Disallow: /404.html
+Disallow: /_onizleme.html
 
 # Arama motorlari icin tarama hizi (sunucu yorulmasin)
 User-agent: Googlebot

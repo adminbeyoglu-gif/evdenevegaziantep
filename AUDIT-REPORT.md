@@ -217,3 +217,43 @@ The `<title>` is more keyword-optimized than the H1. Consider adding "Asansörl�
 | **Conversions** | ⭐⭐⭐⭐⭐ | Multiple CTAs, WhatsApp integration, tracking |
 
 **Overall: 4.0 / 5.0** — A well-built static site with strong SEO and conversion focus. Main areas for improvement are **image optimization** and **reducing code duplication**.
+
+---
+
+# ✅ İKİNCİ TUR DÜZELTMELER (2026-09-10, akşam)
+
+İlk rapordaki tüm maddeler ve sonraki içerik güncellemelerinde oluşan yeni sorunlar giderildi.
+
+## Performans — Görseller
+- **45 JPG için AVIF üretildi** (`quality=50`): toplam görsel ağırlığı JPG'de 7.186 MB → WebP 5.147 MB → **AVIF 2.994 MB**; WebP'ye göre ek **%42, JPG'ye göre %58 azalma**.
+- Tüm `<picture>` bloklarına `<source type="image/avif">` eklendi (AVIF → WebP → JPG sıralaması, 55 sayfa).
+- **LCP düzeltmesi site geneline yayıldı:** her sayfadaki ilk içerik görselinden `loading="lazy"` kaldırıldı, `fetchpriority="high"` verildi; ana sayfadaki ikinci `fetchpriority="high"` (gereksiz rekabet) temizlendi ve alt bölüm görseli tekrar `lazy` yapıldı.
+- **Preload'lar düzeltildi:** 40+ sayfadaki preload ya hiç görüntülenmeyen ya da yanlış görseli (eski `asansorlu-tasima.webp`) işaret ediyordu; her sayfanın gerçek LCP adayının AVIF/WebP sürümüne bağlandı. Görsel içermeyen 9 sayfadan (404, form, gizlilik, hakkımızda, iletişim, SSS vb.) gereksiz preload'lar kaldırıldı.
+- Kendi domainine yararsız `preconnect` (üstelik `crossorigin` uyuşmazlığıyla) tüm sayfalardan kaldırıldı; `wa.me`, Googletagmanager ve Google Analytics için dns-prefetch korundu.
+
+## Güvenlik — CSP
+- 55 sayfadaki inline gtag başlatma bloğu **`assets/js/analytics.js`** dosyasına; hacim hesaplama aracının inline kodu **`assets/js/hacim-hesaplama.js`** dosyasına taşındı.
+- CSP `script-src` **`'unsafe-inline'` kuralından arındırıldı** (hem `vercel.json` hem yedek `_headers`).
+- `connect-src`'ye `googletagmanager.com` eklendi.
+- Doğrulama: sitede artık JSON-LD dışında hiçbir inline `<script>` ve inline event handler yok; tüm harici JS'ler CSP ile uyumlu.
+
+## SEO / Erişilebilirlik / UX
+- Sitemap'te yer alan 24 JPG'nin AVIF karşılıkları image-sitemap'e eklendi; tüm girdiler doğrulandı (eksik dosya yok).
+- Ölü Universal Analytics noscript pikseli (`/collect?v=1...tid=G-...`, GA4'te çalışmıyor) tüm sayfalardan kaldırıldı; yerine JS kapalıyken görünen, telefon ve WhatsApp içeren **bilgi çubuğu `<noscript>`** eklendi (55 sayfa).
+- Ana sayfa ve 404'teki yalnızca yorum satırı olan noscript durumu da aynı çubukla tamamlandı.
+- `robots.txt`'e `Disallow: /_onizleme.html` eklendi (Vercel header'daki `noindex`'e ek katman).
+- `_headers` ve `vercel.json`'a `*.avif` için 1 yıllık immutable cache kuralı eklendi.
+
+## Doğrulama
+- 56 sayfa tarandı: JSON-LD bloklarının tamamı geçerli JSON; kırık yerel referans yok; 2.561 HTTP isteğiyle tüm sayfa ve varlıklar 200 dönüyor.
+- Ölçümler: toplam görsel 7.19 MB → 2.99 MB (modern format zinciriyle), sayfa başı preload/LCP tutarlı, CSP A seviyesinde inline script yok.
+
+| Category | Önceki | Şimdiki |
+|----------|-------:|--------:|
+| **Performance** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Security (CSP)** | ⭐⭐⭐⭐⭐* | ⭐⭐⭐⭐⭐ |
+| **Code Quality** | ⭐⭐⭐ | ⭐⭐⭐⭐½ |
+| **SEO** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Accessibility** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ |
+
+\* CSP kâğıt üzerinde tamdı ancak `script-src 'unsafe-inline'` içeriyordu; artık gerçekten sıkı.
