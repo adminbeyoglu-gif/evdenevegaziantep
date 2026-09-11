@@ -1,5 +1,3 @@
-/* Tum stil dosyasi head'de preload edilir; ilk boyama satir ici kritik CSS ile olur. */
-document.querySelectorAll('link[data-css]').forEach(function(l){l.rel='stylesheet';});
 document.addEventListener('click',function(e){
  var b=e.target.closest('.menu-btn');
  if(b){var n=document.getElementById('nav');n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open'))}
