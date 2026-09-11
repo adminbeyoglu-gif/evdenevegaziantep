@@ -86,6 +86,41 @@
       "source": "/teklif-al",
       "destination": "/fiyat-teklifi/",
       "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck-480w.avif",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu-480w.avif",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck-480w.webp",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu-480w.webp",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck-768w.avif",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu-768w.avif",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck-768w.webp",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu-768w.webp",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck.avif",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu.avif",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck.jpg",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/real/kamyon/branded-truck.webp",
+      "destination": "/assets/img/real/kamyon/beyoglu-nakliyat-kamyonu.webp",
+      "permanent": true
     }
   ],
   "headers": [
