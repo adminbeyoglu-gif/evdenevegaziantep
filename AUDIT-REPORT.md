@@ -323,3 +323,67 @@ Canlı trafik Cloudflare üzerinden Vercel'e geçiyor (`server: cloudflare` + `x
    CF → Rules → Redirect Rules ile tek 308 kuralı tanımlayın (ya da CF SSL/Always Use HTTPS + www kuralını 308 yapın).
 2. **api.uk.exponea.com/bulk** çağrısı kod tabanında yok; CF Zaraz/Worker/App enjeksiyonu — kullanılmıyorsa kaldırın.
 3. email-decode.min.js CF Scrape Shield ürünü; e-posta gizleme istenmiyorsa kapatılabilir (kalsa da 1 KB, önemsiz).
+
+---
+
+# ✅ BAĞIMSIZ YENİDEN DOĞRULAMA (2026-09-11)
+
+Tüm depo ve canlı üretim (`www.evdenevegaziantep.com`) ayrı bir taramayla yeniden denetlendi.
+
+## Orijinal 15 maddenin depo durumu — TAMAMI KAPANDI
+
+| # | Sorun | Durum | Kanıt |
+|---|-------|-------|-------|
+| 1 | Sitemap'te kullanılmayan hero görseli | ✅ Kapandı | `sitemap.xml`'de `hero-nakliyat.jpg` referansı yok |
+| 2 | Modern görsel formatı yok | ✅ Kapandı | AVIF/WebP srcset + preload (`hero-asansor-truck-*.avif` diskte mevcut) |
+| 3 | LCP görseli yavaş | ✅ Kapandı | `fetchpriority="high"` + preload; canlı LCP ~0,29 sn |
+| 4 | Resource hint yok | ✅ Kapandı | dns-prefetch (wa.me, GTM, GA) + imagesrcset preload |
+| 5 | WhatsApp linkleri aynı sekmede | ✅ Kapandı | 56/56 sayfada `target="_blank" rel="noopener"` |
+| 6 | Hatalı `foto` dosyası | ✅ Kapandı | Kökte yok; tekrarını önlemek için `.gitignore` eklendi |
+| 7 | 760 KB tekrarlayan inline CSS | ✅ Kapandı | Kritik CSS inline (7,4 KB) + `assets/css/style.css` (15,8 KB) preload→stylesheet deseni; kritik kuralların style.css alt kümesi olduğu doğrulandı (0 eksik) |
+| 8 | Form JS'siz çalışmıyor | ✅ Kapandı | `<form action="https://wa.me/905461122797" method="GET">` + `<noscript>` uyarı şeridi |
+| 9 | `_onizleme.html` indekslenme riski | ✅ Kapandı | Üç katman: `noindex,nofollow` meta + robots.txt Disallow + header `X-Robots-Tag` |
+| 10 | Sahte SearchAction | ✅ Kapandı | Hiçbir sayfada SearchAction kalmadı |
+| 11 | favicon.ico yok | ✅ Kapandı | `/favicon.ico` + `apple-touch-icon.png` mevcut |
+| 12 | Analytics `<noscript>` yok | ✅ Kapandı | gtag'lı tüm sayfalarda `googletagmanager.com/ns.html` pikseli var |
+| 13 | CSP `unsafe-inline` (script) | ✅ Kapandı | JS harici dosyalara taşındı (`main.js`, `analytics.js`); `script-src`'de inline yok |
+| 14 | manifest.json yok | ✅ Kapandı | Mevcut; tüm ikon dosyaları diskte doğrulandı |
+| 15 | H1 anahtar kelime odağı | ✅ Kapandı | Ana sayfa H1'i hedef kelimeyi içeriyor |
+
+## 56 sayfalık tam tarama sonuçları (0 hata)
+
+- **JSON-LD:** 56 sayfadaki tüm `<script type="application/ld+json">` blokları ayrıştırıldı → 0 sözdizimi hatası
+- **İç linkler:** 0 kırık bağlantı (relatif + mutlak, görseller dahil)
+- **Sitemap ↔ dosya ↔ canonical:** 54 URL birebir tutarlı, mükerrer yok, tüm `<lastmod>` 2026-09-10
+- **Title/description:** 0 mükerrer
+- **Telefon tutarlılığı:** Tüm sayfalarda tek numara (0546 112 27 97)
+- **HTTP kaynak:** 0 adet `http://` referansu (CSP `upgrade-insecure-requests` de aktif)
+- **Çoklu H1 / mükerrer id / placeholder metin:** 0
+
+## Canlı üretim kontrolleri (2026-09-11)
+
+| Kontrol | Sonuç |
+|---------|-------|
+| Güvenlik başlıkları (CSP, HSTS, X-Frame, XCTO, Referrer) | ✅ Yayında |
+| `/_onizleme.html` → `X-Robots-Tag: noindex, nofollow` | ✅ Yayında |
+| `/assets/css/style.css` → `immutable, max-age=31536000` | ✅ Yayında |
+| Sitemap canlı URL sayısı = depo (54) | ✅ Eşit |
+| Örnek sayfa (`/hacim-hesaplama/`) | ✅ 200 |
+| HTTP→HTTPS (apex) | ✅ 308 |
+| **Apex → www** | ⚠️ **HÂLÂ 307** (aşağıda) |
+
+## Açık kalan tek madde — panel tarafı (repo dışı)
+
+**Apex (`evdenevegaziantep.com`) → `www` yönlendirmesi 307 (geçici) dönüyor.**
+Bugün yeniden test edildi: `https://evdenevegaziantep.com/hacim-hesaplama/` → 307.
+Depodaki `vercel.json` host kuralları (`permanent: true` → 308 olmalıydı) tetiklenmiyor;
+yönlendirme panel seviyesinden geliyor. SEO etkisi düşük (tüm canonical'lar zaten www
+gösteriyor) ama sinyal birleştirme için 301/308 idealdir.
+
+**Yapılacak (Cloudflare):** CF → Rules → Redirect Rules → yeni kural:
+- Alan: `http.request.full_hostname eq "evdenevegaziantep.com"`
+- Eylem: Dynamic Redirect → `concat("https://www.evdenevegaziantep.com", http.request.uri.path)` → **Status code: 308**
+
+**Alternatif (Vercel):** Project → Settings → Domains → `www.evdenevegaziantep.com`
+birincil yapıldıysa, apex'e ait otomatik yönlendirmenin 308 seçeneğiyle
+"Permanent Redirect" olarak ayarlandığından emin olun (panel sürümüne göre 307/308 seçeneği sunulur).

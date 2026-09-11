@@ -1,0 +1,14 @@
+# İşletim sistemi artıkları (audit #6'daki hatalı 'foto' dosyası türünün tekrarını önler)
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Editör klasörleri
+.vscode/
+.idea/
+
+# Yerel test/geçici dosyalar
+*.log
+tmp/
