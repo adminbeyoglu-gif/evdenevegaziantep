@@ -24,6 +24,15 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 # SEO analiz botlari - Ahrefs/Semrush taramasina izin verilir
 User-agent: AhrefsBot
 Allow: /
