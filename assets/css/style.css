@@ -278,17 +278,3 @@ th{background:linear-gradient(135deg,#0b3a75,#12508f)}
 .fbot span a{text-decoration:underline;text-underline-offset:2px}
 
 p a:not(.btn){text-decoration:underline;text-underline-offset:2px}
-
-/* KVKK riza bandi */
-#riza-bandi{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:#0a2540;color:#e8f0fb;padding:14px 18px;box-shadow:0 -8px 30px rgba(7,26,51,.35);transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.6,.2,1)}
-#riza-bandi.acik{transform:translateY(0)}
-.riza-ic{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.riza-yazi{margin:0;font-size:.88rem;line-height:1.5;flex:1 1 320px}
-.riza-yazi a{color:#9cc3f5;text-decoration:underline}
-.riza-btns{display:flex;gap:10px;flex:none}
-.riza-btns button{cursor:pointer;border:0;border-radius:10px;padding:11px 20px;font-weight:800;font-size:.9rem;font-family:inherit}
-.riza-tamam{background:#c2410c;color:#fff}
-.riza-tamam:hover{background:#a33409}
-.riza-red{background:transparent;color:#cfe0f5;border:2px solid #46689a !important}
-.riza-red:hover{border-color:#9cc3f5 !important}
-@media(max-width:640px){.riza-ic{flex-direction:column;align-items:stretch;text-align:center}.riza-btns{flex-direction:column}.riza-btns button{width:100%}}
