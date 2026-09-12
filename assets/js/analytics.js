@@ -6,7 +6,7 @@
    konsolda [GA] satirlari kutuphanenin yuklenip yuklenmedigini gosterir. */
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-var GA_ID = 'G-ZG8TX9J7WS';
+var GA_ID = 'G-ZJXZC7MMRG';
 var GA_DEBUG = /[?&]debug=1/.test(location.search);
 gtag('js', new Date());
 if (GA_DEBUG) {
