@@ -60,13 +60,13 @@ padding:7px 15px;border-radius:99px;font-size:.83rem;font-weight:700;margin-bott
 /* FORM CARD */
 .formcard{background:#fff;color:#1b2430;border-radius:16px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.32)}
 .formcard h2{font-size:1.22rem;margin-bottom:.2em}
-.formcard p.sm{font-size:.85rem;color:#6b7c93;margin-bottom:1em}
+.formcard p.sm{font-size:.85rem;color:#556680;margin-bottom:1em}
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 input,select,textarea{width:100%;padding:12px 13px;border:1.6px solid #d8e1ec;border-radius:9px;font-size:.95rem;
 font-family:inherit;margin-bottom:10px;background:#fbfcfe;color:#1b2430}
 input:focus,select:focus,textarea:focus{outline:0;border-color:#1668c4;background:#fff;box-shadow:0 0 0 3px rgba(22,104,196,.13)}
 label{display:block;font-size:.82rem;font-weight:700;color:#3d5273;margin-bottom:4px}
-.kvkk{font-size:.74rem;color:#7b8ba3;margin:8px 0 0}
+.kvkk{font-size:.74rem;color:#5d6c84;margin:8px 0 0}
 /* SECTIONS */
 section{padding:66px 0}
 .alt{background:#f5f8fc}
