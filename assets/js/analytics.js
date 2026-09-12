@@ -9,7 +9,11 @@ function gtag(){dataLayer.push(arguments);}
 var GA_ID = 'G-ZG8TX9J7WS';
 var GA_DEBUG = /[?&]debug=1/.test(location.search);
 gtag('js', new Date());
-gtag('config', GA_ID, GA_DEBUG ? { debug_mode: true } : undefined);
+if (GA_DEBUG) {
+  gtag('config', GA_ID, { debug_mode: true });
+} else {
+  gtag('config', GA_ID);
+}
 (function(){
  var yuklendi=false;
  function yukle(){
