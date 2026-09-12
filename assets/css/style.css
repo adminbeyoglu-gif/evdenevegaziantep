@@ -278,3 +278,9 @@ th{background:linear-gradient(135deg,#0b3a75,#12508f)}
 .fbot span a{text-decoration:underline;text-underline-offset:2px}
 
 p a:not(.btn){text-decoration:underline;text-underline-offset:2px}
+/* CRO: form onay paneli */
+.form-onay{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;background:#effaf3;border:1px solid #bfe6cd;color:#14532d;font-size:.92rem}
+.form-onay.go{display:block;animation:foGir .3s ease}
+.form-onay p{margin:.35em 0 0;font-size:.88rem;color:#166534}
+.form-onay .fo-link{display:inline-flex;margin-top:10px;background:#1faf54}
+@keyframes foGir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
