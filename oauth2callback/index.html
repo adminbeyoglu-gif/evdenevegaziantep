@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Google Yetkilendirme — Beyoğlu Nakliyat</title>
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a2540;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:20px}
+.kart{background:#fff;color:#1b2430;border-radius:16px;padding:28px 22px;max-width:460px;width:100%;text-align:center;border-top:4px solid #f25c05}
+h1{font-size:1.25rem;margin:0 0 8px}
+p{color:#44536b;font-size:.92rem;line-height:1.5}
+.kod{background:#f1f5f9;border:2px dashed #94a3b8;border-radius:12px;padding:14px 12px;margin:14px 0;font-family:monospace;font-size:.8rem;word-break:break-all;user-select:all}
+.btn{display:inline-block;background:#c2410c;color:#fff;border:0;border-radius:10px;padding:13px 26px;font-size:1rem;font-weight:700;width:100%;margin-top:6px}
+.ok{background:#effaf3;border:1px solid #bfe6cd;color:#14532d;border-radius:10px;padding:10px;margin-top:12px;font-size:.9rem}
+.gizli{display:none}
+</style>
+</head>
+<body>
+<div class="kart">
+<h1>🔐 Google Yetkilendirme</h1>
+<div id="adim1">
+<p>Aşağıdaki <b>yetkilendirme kodunu</b> kopyalayıp yapaylık asistanınıza (sohbete) gönderin.</p>
+<div class="kod" id="kod">okunuyor…</div>
+<button class="btn" onclick="kopyala()">📋 Kodu Kopyala</button>
+<div class="ok gizli" id="kopyalandi">✅ Kopyalandı! Sohbete dönüp yapıştırın ve gönderin.</div>
+</div>
+<div id="hata" class="gizli">
+<p>❌ Yetki verilmedi veya kod alınamadı.<br>Sohbete dönün, tekrar deneyelim.</p>
+<div class="kod" id="hata-mesaj"></div>
+</div>
+</div>
+<script>
+var p = new URLSearchParams(location.search);
+var kod = p.get('code'), err = p.get('error');
+if (kod) {
+  document.getElementById('kod').textContent = kod;
+  if (navigator.clipboard) navigator.clipboard.writeText(kod).then(function(){
+    document.getElementById('kopyalandi').classList.remove('gizli');
+  }).catch(function(){});
+} else {
+  document.getElementById('adim1').classList.add('gizli');
+  document.getElementById('hata').classList.remove('gizli');
+  document.getElementById('hata-mesaj').textContent = err || location.search;
+}
+function kopyala(){
+  var k = document.getElementById('kod').textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(k);
+  document.getElementById('kopyalandi').classList.remove('gizli');
+}
+</script>
+</body>
+</html>
