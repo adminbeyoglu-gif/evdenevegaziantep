@@ -276,3 +276,5 @@ th{background:linear-gradient(135deg,#0b3a75,#12508f)}
 .formcard{border-top:4px solid #f25c05}
 
 .fbot span a{text-decoration:underline;text-underline-offset:2px}
+
+p a:not(.btn){text-decoration:underline;text-underline-offset:2px}
